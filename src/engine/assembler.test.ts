@@ -14,6 +14,16 @@ describe('assemble', () => {
 		})
 	})
 
+	it('fan: driver + newcomer', () => {
+		const ctx: DeviceContext = { deviceType: 'fan', driverInstalled: true, userLevel: 'newcomer' }
+		expect(assemble(ctx)).toEqual({
+			header: 'h-welcome',
+			blocks: ['b-intro', 'b-feature-highlight'],
+			actionButton: 'btn-start',
+			footer: 'f-help',
+		})
+	})
+
 	it('fan: driver + novice', () => {
 		const ctx: DeviceContext = { deviceType: 'fan', driverInstalled: true, userLevel: 'novice' }
 		expect(assemble(ctx)).toEqual({
@@ -45,6 +55,16 @@ describe('assemble', () => {
 		})
 	})
 
+	it('tablet: driver + newcomer', () => {
+		const ctx: DeviceContext = { deviceType: 'tablet', driverInstalled: true, userLevel: 'newcomer' }
+		expect(assemble(ctx)).toEqual({
+			header: 'h-welcome',
+			blocks: ['b-intro', 'b-feature-highlight'],
+			actionButton: 'btn-start',
+			footer: 'f-help',
+		})
+	})
+
 	it('tablet: driver + novice', () => {
 		const ctx: DeviceContext = { deviceType: 'tablet', driverInstalled: true, userLevel: 'novice' }
 		expect(assemble(ctx)).toEqual({
@@ -68,6 +88,16 @@ describe('assemble', () => {
 	// Edge: no driver ignores userLevel
 	it('fan: no driver + advanced still shows driver flow', () => {
 		const ctx: DeviceContext = { deviceType: 'fan', driverInstalled: false, userLevel: 'advanced' }
+		expect(assemble(ctx)).toEqual({
+			header: 'h-alert',
+			blocks: ['b-driver-missing', 'b-install-guide'],
+			actionButton: 'btn-download-driver',
+			footer: 'f-help',
+		})
+	})
+
+	it('fan: no driver + newcomer still shows driver flow', () => {
+		const ctx: DeviceContext = { deviceType: 'fan', driverInstalled: false, userLevel: 'newcomer' }
 		expect(assemble(ctx)).toEqual({
 			header: 'h-alert',
 			blocks: ['b-driver-missing', 'b-install-guide'],

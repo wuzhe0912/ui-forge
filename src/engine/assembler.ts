@@ -9,6 +9,12 @@ const NO_DRIVER_CONFIG: PopupConfig = {
 
 const RULES: Record<string, Record<string, PopupConfig>> = {
 	fan: {
+		newcomer: {
+			header: 'h-welcome',
+			blocks: ['b-intro', 'b-feature-highlight'],
+			actionButton: 'btn-start',
+			footer: 'f-help',
+		},
 		novice: {
 			header: 'h-setup',
 			blocks: ['b-fan-basic-controls'],
@@ -23,6 +29,12 @@ const RULES: Record<string, Record<string, PopupConfig>> = {
 		},
 	},
 	tablet: {
+		newcomer: {
+			header: 'h-welcome',
+			blocks: ['b-intro', 'b-feature-highlight'],
+			actionButton: 'btn-start',
+			footer: 'f-help',
+		},
 		novice: {
 			header: 'h-setup',
 			blocks: ['b-tablet-pen-test', 'b-tablet-basic-controls'],

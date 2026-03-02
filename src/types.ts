@@ -1,5 +1,5 @@
 export type DeviceType = 'fan' | 'tablet'
-export type UserLevel = 'novice' | 'advanced'
+export type UserLevel = 'newcomer' | 'novice' | 'advanced'
 
 export interface DeviceContext {
 	deviceType: DeviceType
