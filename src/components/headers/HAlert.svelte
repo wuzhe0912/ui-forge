@@ -1,5 +1,7 @@
 <script lang="ts">
-	let { deviceName = 'Device' }: { deviceName?: string } = $props()
+	import { t } from '../../i18n/index.svelte'
+
+	let { deviceName = '' }: { deviceName?: string } = $props()
 </script>
 
 <header class="h-alert">
@@ -7,8 +9,8 @@
 		<span class="icon">&#9888;</span>
 	</div>
 	<div class="text">
-		<h2 class="title">Driver Not Found</h2>
-		<p class="subtitle">{deviceName} detected — driver installation required</p>
+		<h2 class="title">{t('header.driverNotFound')}</h2>
+		<p class="subtitle">{t('header.driverRequired').replace('{device}', deviceName)}</p>
 	</div>
 </header>
 

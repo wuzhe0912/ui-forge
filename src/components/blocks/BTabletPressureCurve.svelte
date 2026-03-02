@@ -1,5 +1,9 @@
+<script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+</script>
+
 <div class="pressure-curve">
-	<span class="title">Pressure Curve</span>
+	<span class="title">{t('block.pressureCurve')}</span>
 	<div class="chart-container">
 		<svg viewBox="0 0 200 200">
 			<!-- X axis -->
@@ -24,8 +28,8 @@
 			<circle cx="80" cy="40" r="4" fill="var(--cyan)" opacity="0.6" />
 
 			<!-- Labels -->
-			<text x="105" y="196" fill="var(--text-dim)" font-size="9" text-anchor="middle" font-family="var(--font-mono)">Input Pressure</text>
-			<text x="8" y="100" fill="var(--text-dim)" font-size="9" text-anchor="middle" font-family="var(--font-mono)" transform="rotate(-90, 8, 100)">Output</text>
+			<text x="105" y="196" fill="var(--text-dim)" font-size="9" text-anchor="middle" font-family="var(--font-mono)">{t('block.inputPressure')}</text>
+			<text x="8" y="100" fill="var(--text-dim)" font-size="9" text-anchor="middle" font-family="var(--font-mono)" transform="rotate(-90, 8, 100)">{t('block.output')}</text>
 		</svg>
 	</div>
 </div>

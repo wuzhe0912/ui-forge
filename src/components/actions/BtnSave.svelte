@@ -1,4 +1,8 @@
-<button class="btn-save">&#10003; Save Settings</button>
+<script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+</script>
+
+<button class="btn-save">{t('btn.saveSettings')}</button>
 
 <style>
 	.btn-save {

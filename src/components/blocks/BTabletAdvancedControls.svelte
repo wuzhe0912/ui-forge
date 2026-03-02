@@ -1,33 +1,35 @@
 <script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+
 	let activeProfile = $state('Photoshop')
 
-	const expressKeys = [
-		{ key: 'E1', action: 'Brush Size +' },
-		{ key: 'E2', action: 'Brush Size \u2212' },
-		{ key: 'E3', action: 'Zoom In' },
-		{ key: 'E4', action: 'Zoom Out' },
-		{ key: 'E5', action: 'Pan' },
-		{ key: 'E6', action: 'Eraser' },
-	]
-
 	const profiles = ['Photoshop', 'Clip Studio', 'Blender']
+
+	const expressKeyMap: Record<string, string> = {
+		E1: 'block.brushSizePlus',
+		E2: 'block.brushSizeMinus',
+		E3: 'block.zoomIn',
+		E4: 'block.zoomOut',
+		E5: 'block.pan',
+		E6: 'block.eraser',
+	}
 </script>
 
 <div class="tablet-advanced">
 	<div class="section">
-		<span class="section-title">Express Keys</span>
+		<span class="section-title">{t('block.expressKeys')}</span>
 		<div class="keys-grid">
-			{#each expressKeys as ek}
+			{#each Object.entries(expressKeyMap) as [key, translationKey]}
 				<div class="key-item">
-					<span class="key-number">{ek.key}</span>
-					<span class="key-action">{ek.action}</span>
+					<span class="key-number">{key}</span>
+					<span class="key-action">{t(translationKey)}</span>
 				</div>
 			{/each}
 		</div>
 	</div>
 
 	<div class="section profiles-section">
-		<span class="section-title">App Profiles</span>
+		<span class="section-title">{t('block.appProfiles')}</span>
 		<div class="profiles-row">
 			{#each profiles as profile}
 				<button

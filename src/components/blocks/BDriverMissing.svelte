@@ -1,13 +1,15 @@
 <script lang="ts">
-	let { deviceName = 'Device' }: { deviceName?: string } = $props()
+	import { t } from '../../i18n/index.svelte'
+
+	let { deviceName = '' }: { deviceName?: string } = $props()
 </script>
 
 <div class="driver-missing">
 	<div class="left">
 		<div class="pulse-dot"></div>
 		<div class="info">
-			<span class="label">Driver Status</span>
-			<span class="value">Not Installed</span>
+			<span class="label">{t('block.driverStatus')}</span>
+			<span class="value">{t('block.notInstalled')}</span>
 		</div>
 	</div>
 	<div class="device-pill">{deviceName}</div>

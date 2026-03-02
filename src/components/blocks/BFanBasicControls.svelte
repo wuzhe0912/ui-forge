@@ -1,11 +1,13 @@
 <script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+
 	let fanOn = $state(true)
 	let rgbHue = $state(180)
 </script>
 
 <div class="fan-basic">
 	<div class="control-row">
-		<span class="label">POWER</span>
+		<span class="label">{t('block.power')}</span>
 		<button
 			class="toggle"
 			class:on={fanOn}
@@ -17,7 +19,7 @@
 	</div>
 
 	<div class="control-row">
-		<span class="label">RGB COLOR</span>
+		<span class="label">{t('block.rgbColor')}</span>
 		<div class="color-control">
 			<input type="range" min="0" max="360" bind:value={rgbHue} class="range" />
 			<div
@@ -29,11 +31,11 @@
 
 	<div class="stats-row">
 		<div class="stat-box">
-			<span class="stat-label">RPM</span>
+			<span class="stat-label">{t('block.rpm')}</span>
 			<span class="stat-value cyan">{fanOn ? '1,240' : '\u2014'}</span>
 		</div>
 		<div class="stat-box">
-			<span class="stat-label">TEMP</span>
+			<span class="stat-label">{t('block.temp')}</span>
 			<span class="stat-value">{fanOn ? '42\u00B0C' : '\u2014'}</span>
 		</div>
 	</div>

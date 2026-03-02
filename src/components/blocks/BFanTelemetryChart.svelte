@@ -1,5 +1,9 @@
+<script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+</script>
+
 <div class="telemetry">
-	<span class="title">Telemetry — Last 60 min</span>
+	<span class="title">{t('block.telemetry')}</span>
 	<div class="chart-container">
 		<svg viewBox="0 0 300 100" preserveAspectRatio="none">
 			<!-- Grid lines -->
@@ -26,8 +30,8 @@
 		</svg>
 	</div>
 	<div class="legend">
-		<span class="legend-item cyan">&#9679; RPM</span>
-		<span class="legend-item amber">&#9679; Temp</span>
+		<span class="legend-item cyan">&#9679; {t('block.rpm')}</span>
+		<span class="legend-item amber">&#9679; {t('block.temp')}</span>
 	</div>
 </div>
 

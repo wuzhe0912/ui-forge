@@ -1,25 +1,29 @@
+<script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+</script>
+
 <div class="install-guide">
 	<div class="step">
 		<div class="step-number">1</div>
 		<div class="step-text">
-			<span class="step-title">Download</span>
-			<span class="step-desc">Get the latest driver package</span>
+			<span class="step-title">{t('block.stepDownload')}</span>
+			<span class="step-desc">{t('block.stepDownloadDesc')}</span>
 		</div>
 	</div>
 	<div class="connector"></div>
 	<div class="step">
 		<div class="step-number">2</div>
 		<div class="step-text">
-			<span class="step-title">Install</span>
-			<span class="step-desc">Run installer and follow prompts</span>
+			<span class="step-title">{t('block.stepInstall')}</span>
+			<span class="step-desc">{t('block.stepInstallDesc')}</span>
 		</div>
 	</div>
 	<div class="connector"></div>
 	<div class="step">
 		<div class="step-number">3</div>
 		<div class="step-text">
-			<span class="step-title">Restart</span>
-			<span class="step-desc">Reconnect device to apply changes</span>
+			<span class="step-title">{t('block.stepRestart')}</span>
+			<span class="step-desc">{t('block.stepRestartDesc')}</span>
 		</div>
 	</div>
 </div>

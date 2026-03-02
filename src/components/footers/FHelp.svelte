@@ -1,6 +1,10 @@
+<script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+</script>
+
 <footer class="f-help">
-	<span class="label">Need help?</span>
-	<a href="#support" class="link">View support docs &#8594;</a>
+	<span class="label">{t('footer.needHelp')}</span>
+	<a href="#support" class="link">{t('footer.supportLink')}</a>
 </footer>
 
 <style>

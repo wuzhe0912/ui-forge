@@ -1,26 +1,28 @@
 <script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+
 	let minSpeed = $state(30)
 	let maxSpeed = $state(100)
 	let targetTemp = $state(65)
 </script>
 
 <div class="fan-advanced">
-	<span class="section-title">Advanced Parameters</span>
+	<span class="section-title">{t('block.advancedParams')}</span>
 
 	<div class="param-row">
-		<span class="param-label">Min Speed</span>
+		<span class="param-label">{t('block.minSpeed')}</span>
 		<input type="range" min="0" max="100" bind:value={minSpeed} class="range" />
 		<span class="param-value">{minSpeed}%</span>
 	</div>
 
 	<div class="param-row">
-		<span class="param-label">Max Speed</span>
+		<span class="param-label">{t('block.maxSpeed')}</span>
 		<input type="range" min="0" max="100" bind:value={maxSpeed} class="range" />
 		<span class="param-value">{maxSpeed}%</span>
 	</div>
 
 	<div class="param-row">
-		<span class="param-label">Target Temp</span>
+		<span class="param-label">{t('block.targetTemp')}</span>
 		<input type="range" min="30" max="90" bind:value={targetTemp} class="range" />
 		<span class="param-value">{targetTemp}&deg;C</span>
 	</div>

@@ -1,5 +1,9 @@
+<script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+</script>
+
 <footer class="f-default">
-	<span>Device Assembly HUD v1.0</span>
+	<span>{t('footer.version')}</span>
 </footer>
 
 <style>

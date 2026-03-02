@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+
 	let sensitivity = $state(50)
 </script>
 
 <div class="tablet-basic">
 	<div class="control-row">
-		<span class="label">PRESSURE SENSITIVITY</span>
+		<span class="label">{t('block.pressureSensitivity')}</span>
 		<div class="range-group">
 			<input type="range" min="0" max="100" bind:value={sensitivity} class="range" />
 			<span class="value">{sensitivity}%</span>
@@ -12,17 +14,17 @@
 	</div>
 
 	<div class="mapping-section">
-		<span class="label">BUTTON MAPPING</span>
+		<span class="label">{t('block.buttonMapping')}</span>
 		<div class="mapping-row">
 			<div class="mapping-item">
 				<span class="key">Btn 1</span>
 				<span class="arrow">&rarr;</span>
-				<span class="action">Right Click</span>
+				<span class="action">{t('block.btn1Action')}</span>
 			</div>
 			<div class="mapping-item">
 				<span class="key">Btn 2</span>
 				<span class="arrow">&rarr;</span>
-				<span class="action">Undo (Ctrl+Z)</span>
+				<span class="action">{t('block.btn2Action')}</span>
 			</div>
 		</div>
 	</div>

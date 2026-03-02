@@ -1,4 +1,8 @@
-<button class="btn-download">&#8595; Download Driver</button>
+<script lang="ts">
+	import { t } from '../../i18n/index.svelte'
+</script>
+
+<button class="btn-download">{t('btn.downloadDriver')}</button>
 
 <style>
 	.btn-download {
