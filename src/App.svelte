@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { tick } from 'svelte'
+	import { animate, stagger, eases } from 'animejs'
 	import type { DeviceType, UserLevel, PopupConfig } from './types'
 	import { assemble } from './engine/assembler'
 	import { registry, allComponentIds } from './registry'
@@ -25,10 +26,26 @@
 			: [],
 	)
 
+	// Animation 1: Device connection pulse
 	function selectDevice(device: DeviceType) {
 		selectedDevice = device
 		driverInstalled = false
 		userLevel = 'novice'
+
+		tick().then(() => {
+			const activeCard = document.querySelector('.device-card.active') as HTMLElement
+			if (activeCard) {
+				animate(activeCard, {
+					boxShadow: [
+						'0 0 0px rgba(0, 240, 255, 0)',
+						'0 0 30px rgba(0, 240, 255, 0.6)',
+						'0 0 20px rgba(0, 240, 255, 0.4)',
+					],
+					duration: 600,
+					ease: eases.outQuad,
+				})
+			}
+		})
 	}
 
 	function toggleDriver() {
@@ -39,6 +56,44 @@
 	function toggleLevel() {
 		userLevel = userLevel === 'novice' ? 'advanced' : 'novice'
 	}
+
+	// Animation 2: Popup assembly stagger
+	$effect(() => {
+		// Track config reactivity
+		const _cfg = config
+		if (!_cfg) return
+
+		tick().then(() => {
+			const children = document.querySelectorAll('.popup > *')
+			if (children.length === 0) return
+
+			animate(children, {
+				translateY: [20, 0],
+				opacity: [0, 1],
+				delay: stagger(80),
+				duration: 400,
+				ease: eases.outCubic,
+			})
+		})
+	})
+
+	// Animation 3: Inventory highlight pulse
+	$effect(() => {
+		// Track activeIds reactivity
+		const _ids = activeIds
+		if (_ids.length === 0) return
+
+		tick().then(() => {
+			const pills = document.querySelectorAll('.inventory__pill--active')
+			if (pills.length === 0) return
+
+			animate(pills, {
+				scale: [1, 1.1, 1],
+				duration: 400,
+				delay: stagger(50),
+			})
+		})
+	})
 
 	function getHeaderProps(headerId: string): Record<string, string> {
 		if (!selectedDevice) return {}
@@ -119,28 +174,28 @@
 		<span class="zone__label">{'\u2462'} Assembled UI</span>
 		{#if config}
 			<div class="popup card">
-				{@const Header = registry[config.header]}
-				{#if Header}
-					<svelte:component this={Header} {...getHeaderProps(config.header)} />
+				{#if registry[config.header]}
+					{@const Header = registry[config.header]}
+					<Header {...getHeaderProps(config.header)} />
 				{/if}
 
 				{#each config.blocks as blockId}
-					{@const Block = registry[blockId]}
-					{#if Block}
-						<svelte:component this={Block} {...getBlockProps(blockId)} />
+					{#if registry[blockId]}
+						{@const Block = registry[blockId]}
+						<Block {...getBlockProps(blockId)} />
 					{/if}
 				{/each}
 
-				{@const Action = registry[config.actionButton]}
-				{#if Action}
+				{#if registry[config.actionButton]}
+					{@const Action = registry[config.actionButton]}
 					<div class="popup__action">
-						<svelte:component this={Action} />
+						<Action />
 					</div>
 				{/if}
 
-				{@const Footer = registry[config.footer]}
-				{#if Footer}
-					<svelte:component this={Footer} />
+				{#if registry[config.footer]}
+					{@const Footer = registry[config.footer]}
+					<Footer />
 				{/if}
 			</div>
 		{:else}
