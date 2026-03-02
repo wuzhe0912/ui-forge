@@ -40,5 +40,9 @@ const RULES: Record<string, Record<string, PopupConfig>> = {
 
 export function assemble(ctx: DeviceContext): PopupConfig {
 	if (!ctx.driverInstalled) return NO_DRIVER_CONFIG
-	return RULES[ctx.deviceType][ctx.userLevel]
+	const deviceRules = RULES[ctx.deviceType]
+	if (!deviceRules) throw new Error(`No rules for device: ${ctx.deviceType}`)
+	const config = deviceRules[ctx.userLevel]
+	if (!config) throw new Error(`No config for level: ${ctx.userLevel}`)
+	return config
 }
