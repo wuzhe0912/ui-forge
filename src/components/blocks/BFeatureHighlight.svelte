@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { t } from '../../i18n/index.svelte'
 
-	let { deviceType = 'fan' }: { deviceType?: 'fan' | 'tablet' } = $props()
+	let { deviceType = 'fan' }: { deviceType?: 'fan' | 'tablet' | 'keyboard' } = $props()
 
 	let features = $derived(
 		deviceType === 'fan'
 			? [t('block.fanFeature1'), t('block.fanFeature2'), t('block.fanFeature3')]
-			: [t('block.tabletFeature1'), t('block.tabletFeature2'), t('block.tabletFeature3')],
+			: deviceType === 'tablet'
+				? [t('block.tabletFeature1'), t('block.tabletFeature2'), t('block.tabletFeature3')]
+				: [t('block.keyboardFeature1'), t('block.keyboardFeature2'), t('block.keyboardFeature3')],
 	)
 </script>
 

@@ -85,6 +85,47 @@ describe('assemble', () => {
 		})
 	})
 
+	// Keyboard scenarios
+	it('keyboard: no driver', () => {
+		const ctx: DeviceContext = { deviceType: 'keyboard', driverInstalled: false, userLevel: 'novice' }
+		expect(assemble(ctx)).toEqual({
+			header: 'h-alert',
+			blocks: ['b-driver-missing', 'b-install-guide'],
+			actionButton: 'btn-download-driver',
+			footer: 'f-help',
+		})
+	})
+
+	it('keyboard: driver + newcomer', () => {
+		const ctx: DeviceContext = { deviceType: 'keyboard', driverInstalled: true, userLevel: 'newcomer' }
+		expect(assemble(ctx)).toEqual({
+			header: 'h-welcome',
+			blocks: ['b-intro', 'b-feature-highlight'],
+			actionButton: 'btn-start',
+			footer: 'f-help',
+		})
+	})
+
+	it('keyboard: driver + novice', () => {
+		const ctx: DeviceContext = { deviceType: 'keyboard', driverInstalled: true, userLevel: 'novice' }
+		expect(assemble(ctx)).toEqual({
+			header: 'h-setup',
+			blocks: ['b-keyboard-key-test', 'b-keyboard-basic-controls'],
+			actionButton: 'btn-save',
+			footer: 'f-help',
+		})
+	})
+
+	it('keyboard: driver + advanced', () => {
+		const ctx: DeviceContext = { deviceType: 'keyboard', driverInstalled: true, userLevel: 'advanced' }
+		expect(assemble(ctx)).toEqual({
+			header: 'h-setup',
+			blocks: ['b-keyboard-key-test', 'b-keyboard-advanced-controls', 'b-keyboard-heatmap'],
+			actionButton: 'btn-save',
+			footer: 'f-default',
+		})
+	})
+
 	// Edge: no driver ignores userLevel
 	it('fan: no driver + advanced still shows driver flow', () => {
 		const ctx: DeviceContext = { deviceType: 'fan', driverInstalled: false, userLevel: 'advanced' }

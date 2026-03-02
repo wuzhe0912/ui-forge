@@ -10,6 +10,7 @@ const en: Record<string, string> = {
 	// Devices
 	'device.fan': 'Cooling Fan',
 	'device.tablet': 'Drawing Tablet',
+	'device.keyboard': 'Mechanical Keyboard',
 	'device.connected': 'Connected',
 	'device.clickToConnect': 'Click to connect',
 
@@ -28,6 +29,7 @@ const en: Record<string, string> = {
 	'header.welcomeSubtitle': 'First time setup for {device}',
 	'header.fanControl': 'Fan Control',
 	'header.tabletSettings': 'Tablet Settings',
+	'header.keyboardSettings': 'Keyboard Settings',
 	'header.advancedMode': 'Advanced Mode',
 
 	// Blocks - shared
@@ -44,6 +46,7 @@ const en: Record<string, string> = {
 	'block.introTitle': 'Product Overview',
 	'block.introFanDesc': 'Smart cooling fan with RGB lighting and auto temperature control',
 	'block.introTabletDesc': 'Professional drawing tablet with pressure sensitivity and customizable express keys',
+	'block.introKeyboardDesc': 'Mechanical keyboard with RGB backlighting and macro customization',
 	'block.featureHighlight': 'Feature Highlights',
 	'block.fanFeature1': 'Full RGB lighting control',
 	'block.fanFeature2': 'Real-time RPM & temperature monitoring',
@@ -51,6 +54,9 @@ const en: Record<string, string> = {
 	'block.tabletFeature1': '8192 levels of pressure sensitivity',
 	'block.tabletFeature2': '6 customizable express keys',
 	'block.tabletFeature3': 'Multi-app profile support',
+	'block.keyboardFeature1': 'Full N-Key Rollover (NKRO)',
+	'block.keyboardFeature2': 'Per-key RGB lighting control',
+	'block.keyboardFeature3': 'Programmable macro keys',
 
 	// Blocks - fan
 	'block.power': 'Power',
@@ -81,6 +87,23 @@ const en: Record<string, string> = {
 	'block.pressureCurve': 'Pressure Curve',
 	'block.inputPressure': 'Input Pressure',
 	'block.output': 'Output',
+
+	// Blocks - keyboard
+	'block.keyTestArea': 'Key Test Area',
+	'block.clickKeyToTest': 'Click keys to test input',
+	'block.rgbMode': 'RGB Mode',
+	'block.static': 'Static',
+	'block.breathing': 'Breathing',
+	'block.wave': 'Wave',
+	'block.brightness': 'Brightness',
+	'block.repeatRate': 'Repeat Rate',
+	'block.macroEditor': 'Macro Editor',
+	'block.macroSlot': 'Macro Slot',
+	'block.perKeyCustom': 'Per-Key Customization',
+	'block.keyProfiles': 'Profiles',
+	'block.keyHeatmap': 'Key Heatmap — Last 7 days',
+	'block.heatmapLow': 'Low',
+	'block.heatmapHigh': 'High',
 
 	// Action buttons
 	'btn.downloadDriver': '↓ Download Driver',

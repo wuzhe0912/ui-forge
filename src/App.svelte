@@ -9,6 +9,7 @@
 	const DEVICE_ICONS: Record<DeviceType, string> = {
 		fan: '\u{1F300}',
 		tablet: '\u{270F}\u{FE0F}',
+		keyboard: '\u{2328}\u{FE0F}',
 	}
 
 	let selectedDevice: DeviceType | null = $state(null)
@@ -117,7 +118,12 @@
 
 	function getDeviceName(): string {
 		if (!selectedDevice) return ''
-		return selectedDevice === 'fan' ? t('device.fan') : t('device.tablet')
+		const map: Record<DeviceType, string> = {
+			fan: t('device.fan'),
+			tablet: t('device.tablet'),
+			keyboard: t('device.keyboard'),
+		}
+		return map[selectedDevice]
 	}
 
 	function getHeaderProps(headerId: string): Record<string, string> {
@@ -130,7 +136,12 @@
 			return { deviceName }
 		}
 		if (headerId === 'h-setup') {
-			const title = selectedDevice === 'fan' ? t('header.fanControl') : t('header.tabletSettings')
+			const titleMap: Record<DeviceType, string> = {
+				fan: t('header.fanControl'),
+				tablet: t('header.tabletSettings'),
+				keyboard: t('header.keyboardSettings'),
+			}
+			const title = titleMap[selectedDevice!]
 			return {
 				title,
 				subtitle: userLevel === 'advanced' ? t('header.advancedMode') : '',
@@ -179,14 +190,14 @@
 	<section class="zone">
 		<span class="zone__label">{t('app.selectDevice')}</span>
 		<div class="devices">
-			{#each (['fan', 'tablet'] as DeviceType[]) as device}
+			{#each (['fan', 'tablet', 'keyboard'] as DeviceType[]) as device}
 				<button
 					class="card device-card"
 					class:active={selectedDevice === device}
 					onclick={() => selectDevice(device)}
 				>
 					<span class="device-card__icon">{DEVICE_ICONS[device]}</span>
-					<span class="device-card__name">{device === 'fan' ? t('device.fan') : t('device.tablet')}</span>
+					<span class="device-card__name">{device === 'fan' ? t('device.fan') : device === 'tablet' ? t('device.tablet') : t('device.keyboard')}</span>
 					<span class="device-card__status">
 						{selectedDevice === device ? t('device.connected') : t('device.clickToConnect')}
 					</span>

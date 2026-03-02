@@ -12,6 +12,10 @@ import BTabletPenTest from './components/blocks/BTabletPenTest.svelte'
 import BTabletBasicControls from './components/blocks/BTabletBasicControls.svelte'
 import BTabletAdvancedControls from './components/blocks/BTabletAdvancedControls.svelte'
 import BTabletPressureCurve from './components/blocks/BTabletPressureCurve.svelte'
+import BKeyboardKeyTest from './components/blocks/BKeyboardKeyTest.svelte'
+import BKeyboardBasicControls from './components/blocks/BKeyboardBasicControls.svelte'
+import BKeyboardAdvancedControls from './components/blocks/BKeyboardAdvancedControls.svelte'
+import BKeyboardHeatmap from './components/blocks/BKeyboardHeatmap.svelte'
 import BIntro from './components/blocks/BIntro.svelte'
 import BFeatureHighlight from './components/blocks/BFeatureHighlight.svelte'
 import BtnDownloadDriver from './components/actions/BtnDownloadDriver.svelte'
@@ -33,6 +37,10 @@ export const registry: Record<string, Component> = {
 	'b-tablet-basic-controls': BTabletBasicControls,
 	'b-tablet-advanced-controls': BTabletAdvancedControls,
 	'b-tablet-pressure-curve': BTabletPressureCurve,
+	'b-keyboard-key-test': BKeyboardKeyTest,
+	'b-keyboard-basic-controls': BKeyboardBasicControls,
+	'b-keyboard-advanced-controls': BKeyboardAdvancedControls,
+	'b-keyboard-heatmap': BKeyboardHeatmap,
 	'b-intro': BIntro,
 	'b-feature-highlight': BFeatureHighlight,
 	'btn-download-driver': BtnDownloadDriver,

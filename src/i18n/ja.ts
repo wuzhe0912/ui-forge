@@ -10,6 +10,7 @@ const ja: Record<string, string> = {
 	// Devices
 	'device.fan': '冷却ファン',
 	'device.tablet': 'ペンタブレット',
+	'device.keyboard': 'メカニカルキーボード',
 	'device.connected': '接続済み',
 	'device.clickToConnect': 'クリックして接続',
 
@@ -28,6 +29,7 @@ const ja: Record<string, string> = {
 	'header.welcomeSubtitle': '{device} の初期設定',
 	'header.fanControl': 'ファン制御',
 	'header.tabletSettings': 'タブレット設定',
+	'header.keyboardSettings': 'キーボード設定',
 	'header.advancedMode': '上級モード',
 
 	// Blocks - shared
@@ -44,6 +46,7 @@ const ja: Record<string, string> = {
 	'block.introTitle': '製品紹介',
 	'block.introFanDesc': 'RGB照明と自動温度制御対応のスマート冷却ファン',
 	'block.introTabletDesc': '感圧ペンとカスタマイズ可能なエクスプレスキー対応プロ仕様ペンタブレット',
+	'block.introKeyboardDesc': 'RGBバックライトとマクロカスタマイズ対応メカニカルキーボード',
 	'block.featureHighlight': '機能ハイライト',
 	'block.fanFeature1': 'フルRGBライティング制御',
 	'block.fanFeature2': 'リアルタイム回転数・温度モニタリング',
@@ -51,6 +54,9 @@ const ja: Record<string, string> = {
 	'block.tabletFeature1': '8192段階の筆圧感知',
 	'block.tabletFeature2': '6つのカスタマイズ可能なエクスプレスキー',
 	'block.tabletFeature3': 'マルチアプリプロファイル対応',
+	'block.keyboardFeature1': 'フルNキーロールオーバー (NKRO)',
+	'block.keyboardFeature2': 'キーごとのRGBライティング制御',
+	'block.keyboardFeature3': 'プログラマブルマクロキー',
 
 	// Blocks - fan
 	'block.power': '電源',
@@ -81,6 +87,23 @@ const ja: Record<string, string> = {
 	'block.pressureCurve': '筆圧カーブ',
 	'block.inputPressure': '入力圧力',
 	'block.output': '出力',
+
+	// Blocks - keyboard
+	'block.keyTestArea': 'キーテストエリア',
+	'block.clickKeyToTest': 'キーをクリックして入力をテスト',
+	'block.rgbMode': 'RGBモード',
+	'block.static': '固定',
+	'block.breathing': 'ブリージング',
+	'block.wave': 'ウェーブ',
+	'block.brightness': '輝度',
+	'block.repeatRate': 'リピートレート',
+	'block.macroEditor': 'マクロエディタ',
+	'block.macroSlot': 'マクロスロット',
+	'block.perKeyCustom': 'キーごとのカスタマイズ',
+	'block.keyProfiles': 'プロファイル',
+	'block.keyHeatmap': 'キーヒートマップ — 過去7日間',
+	'block.heatmapLow': '低',
+	'block.heatmapHigh': '高',
 
 	// Action buttons
 	'btn.downloadDriver': '↓ ドライバーをダウンロード',

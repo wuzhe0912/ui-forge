@@ -10,6 +10,7 @@ const ko: Record<string, string> = {
 	// Devices
 	'device.fan': '쿨링팬',
 	'device.tablet': '그래픽 태블릿',
+	'device.keyboard': '기계식 키보드',
 	'device.connected': '연결됨',
 	'device.clickToConnect': '클릭하여 연결',
 
@@ -28,6 +29,7 @@ const ko: Record<string, string> = {
 	'header.welcomeSubtitle': '{device} 초기 설정',
 	'header.fanControl': '팬 제어',
 	'header.tabletSettings': '태블릿 설정',
+	'header.keyboardSettings': '키보드 설정',
 	'header.advancedMode': '고급 모드',
 
 	// Blocks - shared
@@ -44,6 +46,7 @@ const ko: Record<string, string> = {
 	'block.introTitle': '제품 소개',
 	'block.introFanDesc': 'RGB 조명 및 자동 온도 제어 스마트 쿨링팬',
 	'block.introTabletDesc': '압력 감지 펜 및 맞춤형 단축키 지원 전문 그래픽 태블릿',
+	'block.introKeyboardDesc': 'RGB 백라이트 및 매크로 맞춤형 기계식 키보드',
 	'block.featureHighlight': '주요 기능',
 	'block.fanFeature1': '풀 RGB 조명 제어',
 	'block.fanFeature2': '실시간 RPM 및 온도 모니터링',
@@ -51,6 +54,9 @@ const ko: Record<string, string> = {
 	'block.tabletFeature1': '8192레벨 압력 감지',
 	'block.tabletFeature2': '6개의 맞춤형 단축키',
 	'block.tabletFeature3': '다중 앱 프로필 지원',
+	'block.keyboardFeature1': '풀 N키 롤오버 (NKRO)',
+	'block.keyboardFeature2': '키별 RGB 조명 제어',
+	'block.keyboardFeature3': '프로그래밍 가능한 매크로 키',
 
 	// Blocks - fan
 	'block.power': '전원',
@@ -81,6 +87,23 @@ const ko: Record<string, string> = {
 	'block.pressureCurve': '압력 곡선',
 	'block.inputPressure': '입력 압력',
 	'block.output': '출력',
+
+	// Blocks - keyboard
+	'block.keyTestArea': '키 테스트 영역',
+	'block.clickKeyToTest': '키를 클릭하여 입력 테스트',
+	'block.rgbMode': 'RGB 모드',
+	'block.static': '고정',
+	'block.breathing': '브리딩',
+	'block.wave': '웨이브',
+	'block.brightness': '밝기',
+	'block.repeatRate': '반복 속도',
+	'block.macroEditor': '매크로 에디터',
+	'block.macroSlot': '매크로 슬롯',
+	'block.perKeyCustom': '키별 맞춤 설정',
+	'block.keyProfiles': '프로필',
+	'block.keyHeatmap': '키 히트맵 — 최근 7일',
+	'block.heatmapLow': '낮음',
+	'block.heatmapHigh': '높음',
 
 	// Action buttons
 	'btn.downloadDriver': '↓ 드라이버 다운로드',

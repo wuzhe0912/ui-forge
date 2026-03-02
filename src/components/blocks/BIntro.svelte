@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { t } from '../../i18n/index.svelte'
 
-	let { deviceType = 'fan' }: { deviceType?: 'fan' | 'tablet' } = $props()
+	let { deviceType = 'fan' }: { deviceType?: 'fan' | 'tablet' | 'keyboard' } = $props()
 
-	let icon = $derived(deviceType === 'fan' ? '\u{1F300}' : '\u{270F}\u{FE0F}')
+	let icon = $derived(
+		deviceType === 'fan' ? '\u{1F300}' : deviceType === 'tablet' ? '\u{270F}\u{FE0F}' : '\u{2328}\u{FE0F}'
+	)
 	let description = $derived(
-		deviceType === 'fan' ? t('block.introFanDesc') : t('block.introTabletDesc'),
+		deviceType === 'fan'
+			? t('block.introFanDesc')
+			: deviceType === 'tablet'
+				? t('block.introTabletDesc')
+				: t('block.introKeyboardDesc'),
 	)
 </script>
 

@@ -10,6 +10,7 @@ const zhTW: Record<string, string> = {
 	// Devices
 	'device.fan': '散熱風扇',
 	'device.tablet': '繪圖板',
+	'device.keyboard': '機械鍵盤',
 	'device.connected': '已連接',
 	'device.clickToConnect': '點擊連接',
 
@@ -28,6 +29,7 @@ const zhTW: Record<string, string> = {
 	'header.welcomeSubtitle': '首次設定 {device}',
 	'header.fanControl': '風扇控制',
 	'header.tabletSettings': '繪圖板設定',
+	'header.keyboardSettings': '鍵盤設定',
 	'header.advancedMode': '進階模式',
 
 	// Blocks - shared
@@ -44,6 +46,7 @@ const zhTW: Record<string, string> = {
 	'block.introTitle': '產品介紹',
 	'block.introFanDesc': '智慧散熱風扇，支援 RGB 燈效與自動溫控',
 	'block.introTabletDesc': '專業繪圖板，支援壓感筆觸與快捷鍵自訂',
+	'block.introKeyboardDesc': '機械鍵盤，支援 RGB 背光與巨集自訂',
 	'block.featureHighlight': '功能亮點',
 	'block.fanFeature1': 'RGB 全彩燈效控制',
 	'block.fanFeature2': '即時轉速與溫度監控',
@@ -51,6 +54,9 @@ const zhTW: Record<string, string> = {
 	'block.tabletFeature1': '8192 級壓感筆觸',
 	'block.tabletFeature2': '6 顆可自訂快捷鍵',
 	'block.tabletFeature3': '多應用程式設定檔',
+	'block.keyboardFeature1': '全鍵無衝突 (NKRO)',
+	'block.keyboardFeature2': 'RGB 單鍵背光控制',
+	'block.keyboardFeature3': '可程式化巨集鍵',
 
 	// Blocks - fan
 	'block.power': '電源',
@@ -81,6 +87,23 @@ const zhTW: Record<string, string> = {
 	'block.pressureCurve': '壓力曲線',
 	'block.inputPressure': '輸入壓力',
 	'block.output': '輸出',
+
+	// Blocks - keyboard
+	'block.keyTestArea': '按鍵測試區',
+	'block.clickKeyToTest': '點擊按鍵以測試輸入',
+	'block.rgbMode': 'RGB 模式',
+	'block.static': '靜態',
+	'block.breathing': '呼吸',
+	'block.wave': '波浪',
+	'block.brightness': '亮度',
+	'block.repeatRate': '重複速率',
+	'block.macroEditor': '巨集編輯器',
+	'block.macroSlot': '巨集插槽',
+	'block.perKeyCustom': '單鍵自訂',
+	'block.keyProfiles': '設定檔',
+	'block.keyHeatmap': '按鍵熱度圖 — 過去 7 天',
+	'block.heatmapLow': '低',
+	'block.heatmapHigh': '高',
 
 	// Action buttons
 	'btn.downloadDriver': '↓ 下載驅動程式',

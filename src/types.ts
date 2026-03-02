@@ -1,4 +1,4 @@
-export type DeviceType = 'fan' | 'tablet'
+export type DeviceType = 'fan' | 'tablet' | 'keyboard'
 export type UserLevel = 'newcomer' | 'novice' | 'advanced'
 
 export interface DeviceContext {

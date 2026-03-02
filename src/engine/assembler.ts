@@ -48,6 +48,26 @@ const RULES: Record<string, Record<string, PopupConfig>> = {
 			footer: 'f-default',
 		},
 	},
+	keyboard: {
+		newcomer: {
+			header: 'h-welcome',
+			blocks: ['b-intro', 'b-feature-highlight'],
+			actionButton: 'btn-start',
+			footer: 'f-help',
+		},
+		novice: {
+			header: 'h-setup',
+			blocks: ['b-keyboard-key-test', 'b-keyboard-basic-controls'],
+			actionButton: 'btn-save',
+			footer: 'f-help',
+		},
+		advanced: {
+			header: 'h-setup',
+			blocks: ['b-keyboard-key-test', 'b-keyboard-advanced-controls', 'b-keyboard-heatmap'],
+			actionButton: 'btn-save',
+			footer: 'f-default',
+		},
+	},
 }
 
 export function assemble(ctx: DeviceContext): PopupConfig {
