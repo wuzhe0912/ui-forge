@@ -4,6 +4,7 @@ const ko: Record<string, string> = {
 	'app.selectDevice': '① 디바이스 선택',
 	'app.setContext': '② 컨텍스트 설정',
 	'app.assembledUI': '③ 조립 결과',
+	'app.assembledHint': ' (UI 미리보기)',
 	'app.inventory': '④ 컴포넌트 목록',
 	'app.selectPrompt': '디바이스를 선택하세요',
 

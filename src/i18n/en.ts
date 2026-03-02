@@ -4,6 +4,7 @@ const en: Record<string, string> = {
 	'app.selectDevice': '① Select Device',
 	'app.setContext': '② Set Context',
 	'app.assembledUI': '③ Assembled UI',
+	'app.assembledHint': ' (UI Preview)',
 	'app.inventory': '④ Component Inventory',
 	'app.selectPrompt': 'Select a device to begin',
 

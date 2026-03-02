@@ -4,6 +4,7 @@ const zhTW: Record<string, string> = {
 	'app.selectDevice': '① 選擇裝置',
 	'app.setContext': '② 設定情境',
 	'app.assembledUI': '③ 組裝結果',
+	'app.assembledHint': '（預覽 UI 畫面）',
 	'app.inventory': '④ 組件庫',
 	'app.selectPrompt': '選擇裝置以開始',
 

@@ -259,7 +259,7 @@
 
 	<!-- Zone 3: Assembled UI -->
 	<section class="zone">
-		<span class="zone__label">{t('app.assembledUI')}</span>
+		<span class="zone__label">{t('app.assembledUI')}<span class="zone__hint">{t('app.assembledHint')}</span></span>
 		{#if config}
 			<div class="popup card">
 				{#if registry[config.header]}
@@ -404,6 +404,15 @@
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		margin-bottom: 10px;
+	}
+
+	.zone__hint {
+		font-size: 10px;
+		color: var(--text-dim);
+		opacity: 0.6;
+		margin-left: 8px;
+		text-transform: none;
+		letter-spacing: 0;
 	}
 
 	/* Zone 1: Device Cards */

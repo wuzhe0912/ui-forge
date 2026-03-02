@@ -4,6 +4,7 @@ const ja: Record<string, string> = {
 	'app.selectDevice': '① デバイスを選択',
 	'app.setContext': '② コンテキスト設定',
 	'app.assembledUI': '③ 組立結果',
+	'app.assembledHint': '（UIプレビュー）',
 	'app.inventory': '④ コンポーネント一覧',
 	'app.selectPrompt': 'デバイスを選択して開始',
 
