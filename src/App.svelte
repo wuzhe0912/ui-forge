@@ -4,15 +4,17 @@
 	import type { DeviceType, UserLevel, PopupConfig } from './types'
 	import { assemble } from './engine/assembler'
 	import { registry, allComponentIds } from './registry'
+	import { t, getLocale, setLocale, type Locale } from './i18n/index.svelte'
 
-	const DEVICE_META: Record<DeviceType, { icon: string; name: string; title: string }> = {
-		fan: { icon: '\u{1F300}', name: 'Cooling Fan', title: 'Fan Control' },
-		tablet: { icon: '\u{270F}\u{FE0F}', name: 'Drawing Tablet', title: 'Tablet Settings' },
+	const DEVICE_ICONS: Record<DeviceType, string> = {
+		fan: '\u{1F300}',
+		tablet: '\u{270F}\u{FE0F}',
 	}
 
 	let selectedDevice: DeviceType | null = $state(null)
 	let driverInstalled = $state(false)
-	let userLevel: UserLevel = $state('novice')
+	let userLevel: UserLevel = $state('newcomer')
+	let langMenuOpen = $state(false)
 
 	let config: PopupConfig | null = $derived(
 		selectedDevice
@@ -26,11 +28,29 @@
 			: [],
 	)
 
+	const LOCALE_NAMES: Record<Locale, string> = {
+		'zh-TW': '繁體中文',
+		en: 'English',
+		ja: '日本語',
+		ko: '한국어',
+	}
+
+	let currentLocaleName = $derived(LOCALE_NAMES[getLocale()])
+
+	function toggleLangMenu() {
+		langMenuOpen = !langMenuOpen
+	}
+
+	function switchLang(l: Locale) {
+		setLocale(l)
+		langMenuOpen = false
+	}
+
 	// Animation 1: Device connection pulse
 	function selectDevice(device: DeviceType) {
 		selectedDevice = device
 		driverInstalled = false
-		userLevel = 'novice'
+		userLevel = 'newcomer'
 
 		tick().then(() => {
 			const activeCard = document.querySelector('.device-card.active') as HTMLElement
@@ -50,11 +70,11 @@
 
 	function toggleDriver() {
 		driverInstalled = !driverInstalled
-		if (!driverInstalled) userLevel = 'novice'
+		if (!driverInstalled) userLevel = 'newcomer'
 	}
 
-	function toggleLevel() {
-		userLevel = userLevel === 'novice' ? 'advanced' : 'novice'
+	function setLevel(level: UserLevel) {
+		userLevel = level
 	}
 
 	// Animation 2: Popup assembly stagger
@@ -95,16 +115,25 @@
 		})
 	})
 
+	function getDeviceName(): string {
+		if (!selectedDevice) return ''
+		return selectedDevice === 'fan' ? t('device.fan') : t('device.tablet')
+	}
+
 	function getHeaderProps(headerId: string): Record<string, string> {
 		if (!selectedDevice) return {}
-		const meta = DEVICE_META[selectedDevice]
+		const deviceName = getDeviceName()
 		if (headerId === 'h-alert') {
-			return { deviceName: meta.name }
+			return { deviceName }
+		}
+		if (headerId === 'h-welcome') {
+			return { deviceName }
 		}
 		if (headerId === 'h-setup') {
+			const title = selectedDevice === 'fan' ? t('header.fanControl') : t('header.tabletSettings')
 			return {
-				title: meta.title,
-				subtitle: userLevel === 'advanced' ? 'Advanced Mode' : '',
+				title,
+				subtitle: userLevel === 'advanced' ? t('header.advancedMode') : '',
 			}
 		}
 		return {}
@@ -112,32 +141,54 @@
 
 	function getBlockProps(blockId: string): Record<string, string> {
 		if (!selectedDevice) return {}
-		const meta = DEVICE_META[selectedDevice]
+		const deviceName = getDeviceName()
 		if (blockId === 'b-driver-missing') {
-			return { deviceName: meta.name }
+			return { deviceName }
+		}
+		if (blockId === 'b-intro' || blockId === 'b-feature-highlight') {
+			return { deviceType: selectedDevice }
 		}
 		return {}
 	}
 </script>
 
 <main class="hud">
-	<h1 class="hud__title">DEVICE ASSEMBLY HUD</h1>
+	<div class="hud__header">
+		<h1 class="hud__title">{t('app.title')}</h1>
+		<div class="lang-switcher">
+			<button class="lang-trigger" onclick={toggleLangMenu}>
+				🌐 {currentLocaleName}
+			</button>
+			{#if langMenuOpen}
+				<div class="lang-dropdown">
+					{#each (['zh-TW', 'en', 'ja', 'ko'] as Locale[]) as l}
+						<button
+							class="lang-option"
+							class:lang-option--active={getLocale() === l}
+							onclick={() => switchLang(l)}
+						>
+							{LOCALE_NAMES[l]}
+						</button>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	</div>
 
 	<!-- Zone 1: Select Device -->
 	<section class="zone">
-		<span class="zone__label">{'\u2460'} Select Device</span>
+		<span class="zone__label">{t('app.selectDevice')}</span>
 		<div class="devices">
 			{#each (['fan', 'tablet'] as DeviceType[]) as device}
-				{@const meta = DEVICE_META[device]}
 				<button
 					class="card device-card"
 					class:active={selectedDevice === device}
 					onclick={() => selectDevice(device)}
 				>
-					<span class="device-card__icon">{meta.icon}</span>
-					<span class="device-card__name">{meta.name}</span>
+					<span class="device-card__icon">{DEVICE_ICONS[device]}</span>
+					<span class="device-card__name">{device === 'fan' ? t('device.fan') : t('device.tablet')}</span>
 					<span class="device-card__status">
-						{selectedDevice === device ? 'Connected' : 'Click to connect'}
+						{selectedDevice === device ? t('device.connected') : t('device.clickToConnect')}
 					</span>
 				</button>
 			{/each}
@@ -147,23 +198,39 @@
 	<!-- Zone 2: Set Context -->
 	{#if selectedDevice}
 		<section class="zone">
-			<span class="zone__label">{'\u2461'} Set Context</span>
+			<span class="zone__label">{t('app.setContext')}</span>
 			<div class="context-controls">
 				<button
 					class="toggle"
 					class:toggle--driver-on={driverInstalled}
 					onclick={toggleDriver}
 				>
-					{driverInstalled ? '\u2713 Installed' : '\u2717 Missing'}
+					{driverInstalled ? t('ctx.installed') : t('ctx.missing')}
 				</button>
 				{#if driverInstalled}
-					<button
-						class="toggle"
-						class:toggle--level-advanced={userLevel === 'advanced'}
-						onclick={toggleLevel}
-					>
-						{userLevel === 'advanced' ? '\u{1F535} Advanced' : '\u{1F7E2} Novice'}
-					</button>
+					<div class="level-toggles">
+						<button
+							class="toggle"
+							class:toggle--level-newcomer={userLevel === 'newcomer'}
+							onclick={() => setLevel('newcomer')}
+						>
+							{t('ctx.newcomer')}
+						</button>
+						<button
+							class="toggle"
+							class:toggle--level-novice={userLevel === 'novice'}
+							onclick={() => setLevel('novice')}
+						>
+							{t('ctx.novice')}
+						</button>
+						<button
+							class="toggle"
+							class:toggle--level-advanced={userLevel === 'advanced'}
+							onclick={() => setLevel('advanced')}
+						>
+							{t('ctx.advanced')}
+						</button>
+					</div>
 				{/if}
 			</div>
 		</section>
@@ -171,7 +238,7 @@
 
 	<!-- Zone 3: Assembled UI -->
 	<section class="zone">
-		<span class="zone__label">{'\u2462'} Assembled UI</span>
+		<span class="zone__label">{t('app.assembledUI')}</span>
 		{#if config}
 			<div class="popup card">
 				{#if registry[config.header]}
@@ -200,14 +267,14 @@
 			</div>
 		{:else}
 			<div class="popup-empty">
-				<span class="popup-empty__text">Select a device to begin</span>
+				<span class="popup-empty__text">{t('app.selectPrompt')}</span>
 			</div>
 		{/if}
 	</section>
 
 	<!-- Zone 4: Component Inventory -->
 	<section class="zone">
-		<span class="zone__label">{'\u2463'} Component Inventory</span>
+		<span class="zone__label">{t('app.inventory')}</span>
 		<div class="inventory">
 			{#each allComponentIds as id}
 				<span
@@ -228,14 +295,80 @@
 		z-index: 1;
 	}
 
+	.hud__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 32px;
+	}
+
 	.hud__title {
 		font-family: var(--font-mono);
 		color: var(--cyan);
 		text-transform: uppercase;
 		letter-spacing: 2px;
 		font-size: 20px;
-		margin-bottom: 32px;
-		text-align: center;
+	}
+
+	/* Language Switcher */
+	.lang-switcher {
+		position: relative;
+	}
+
+	.lang-trigger {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		padding: 6px 12px;
+		border-radius: 6px;
+		border: 1px solid var(--border);
+		background: var(--bg-card);
+		color: var(--text-secondary);
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.lang-trigger:hover {
+		border-color: var(--cyan);
+		color: var(--cyan);
+	}
+
+	.lang-dropdown {
+		position: absolute;
+		top: 100%;
+		right: 0;
+		margin-top: 4px;
+		background: var(--bg-card);
+		border: 1px solid var(--border);
+		border-radius: 6px;
+		overflow: hidden;
+		z-index: 100;
+		min-width: 120px;
+		backdrop-filter: blur(12px);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+	}
+
+	.lang-option {
+		display: block;
+		width: 100%;
+		padding: 8px 14px;
+		border: none;
+		background: transparent;
+		color: var(--text-secondary);
+		font-family: var(--font-sans);
+		font-size: 13px;
+		cursor: pointer;
+		text-align: left;
+		transition: all 0.15s;
+	}
+
+	.lang-option:hover {
+		background: var(--cyan-dim);
+		color: var(--text-primary);
+	}
+
+	.lang-option--active {
+		color: var(--cyan);
+		background: var(--cyan-dim);
 	}
 
 	.zone {
@@ -296,6 +429,12 @@
 	.context-controls {
 		display: flex;
 		gap: 16px;
+		align-items: center;
+	}
+
+	.level-toggles {
+		display: flex;
+		gap: 8px;
 	}
 
 	.toggle {
@@ -311,6 +450,18 @@
 	}
 
 	.toggle--driver-on {
+		border-color: var(--green);
+		color: var(--green);
+		background: rgba(0, 230, 118, 0.1);
+	}
+
+	.toggle--level-newcomer {
+		border-color: var(--green);
+		color: var(--green);
+		background: rgba(0, 230, 118, 0.1);
+	}
+
+	.toggle--level-novice {
 		border-color: var(--green);
 		color: var(--green);
 		background: rgba(0, 230, 118, 0.1);
