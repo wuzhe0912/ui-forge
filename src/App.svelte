@@ -305,6 +305,10 @@
 			{/each}
 		</div>
 	</section>
+
+	<footer class="hud__footer">
+		<span class="hud__credit">Powered by <a class="hud__author" href="https://pitt-wu-blog.vercel.app/" target="_blank" rel="noopener noreferrer">Pitt Wu</a></span>
+	</footer>
 </main>
 
 <style>
@@ -467,10 +471,11 @@
 		gap: 8px;
 	}
 
-	.toggle--driver-off {
+	.toggle.toggle--driver-off {
 		border-color: var(--amber);
 		color: var(--amber);
 		background: rgba(255, 159, 28, 0.1);
+		box-shadow: 0 0 6px rgba(255, 159, 28, 0.2);
 	}
 
 	.divider {
@@ -497,10 +502,11 @@
 		transition: all 0.2s;
 	}
 
-	.toggle--driver-on {
+	.toggle.toggle--driver-on {
 		border-color: var(--green);
 		color: var(--green);
 		background: rgba(0, 230, 118, 0.1);
+		box-shadow: 0 0 6px rgba(0, 230, 118, 0.2);
 	}
 
 	.toggle--level-newcomer {
@@ -574,5 +580,33 @@
 		color: var(--cyan);
 		background: var(--cyan-dim);
 		box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+	}
+
+	/* Footer */
+	.hud__footer {
+		margin-top: 32px;
+		padding-top: 16px;
+		border-top: 1px solid var(--border);
+		text-align: center;
+	}
+
+	.hud__credit {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--text-dim);
+		letter-spacing: 0.5px;
+	}
+
+	.hud__author {
+		color: var(--cyan);
+		text-decoration: none;
+		position: relative;
+		transition: all 0.3s;
+		text-shadow: 0 0 0px transparent;
+	}
+
+	.hud__author:hover {
+		text-shadow: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 16px rgba(0, 240, 255, 0.3);
+		color: #fff;
 	}
 </style>
