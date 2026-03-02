@@ -53,6 +53,11 @@
 		userLevel = 'newcomer'
 
 		tick().then(() => {
+			// Clear all device card glow first
+			document.querySelectorAll('.device-card').forEach((card) => {
+				;(card as HTMLElement).style.boxShadow = ''
+			})
+
 			const activeCard = document.querySelector('.device-card.active') as HTMLElement
 			if (activeCard) {
 				animate(activeCard, {
