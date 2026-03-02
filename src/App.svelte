@@ -73,11 +73,6 @@
 		})
 	}
 
-	function toggleDriver() {
-		driverInstalled = !driverInstalled
-		if (!driverInstalled) userLevel = 'newcomer'
-	}
-
 	function setLevel(level: UserLevel) {
 		userLevel = level
 	}
@@ -205,14 +200,24 @@
 		<section class="zone">
 			<span class="zone__label">{t('app.setContext')}</span>
 			<div class="context-controls">
-				<button
-					class="toggle"
-					class:toggle--driver-on={driverInstalled}
-					onclick={toggleDriver}
-				>
-					{driverInstalled ? t('ctx.installed') : t('ctx.missing')}
-				</button>
+				<div class="driver-toggles">
+					<button
+						class="toggle"
+						class:toggle--driver-off={!driverInstalled}
+						onclick={() => { driverInstalled = false; userLevel = 'newcomer' }}
+					>
+						{t('ctx.missing')}
+					</button>
+					<button
+						class="toggle"
+						class:toggle--driver-on={driverInstalled}
+						onclick={() => { driverInstalled = true }}
+					>
+						{t('ctx.installed')}
+					</button>
+				</div>
 				{#if driverInstalled}
+					<span class="divider">|</span>
 					<div class="level-toggles">
 						<button
 							class="toggle"
@@ -435,6 +440,24 @@
 		display: flex;
 		gap: 16px;
 		align-items: center;
+	}
+
+	.driver-toggles {
+		display: flex;
+		gap: 8px;
+	}
+
+	.toggle--driver-off {
+		border-color: var(--amber);
+		color: var(--amber);
+		background: rgba(255, 159, 28, 0.1);
+	}
+
+	.divider {
+		color: var(--text-dim);
+		font-size: 20px;
+		opacity: 0.3;
+		user-select: none;
 	}
 
 	.level-toggles {
